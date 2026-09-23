@@ -1,5 +1,8 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# Agent rules
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+- Strict TypeScript. No `any`, `@ts-ignore`, or `eslint-disable`.
+- Keep React files under ~200 lines.
+- Put business logic in `lib/engine/` as pure functions.
+- Validate LLM output with Zod.
+- Never put API keys in client code.
+- Do not invent legal conclusions, statutes, or citations.
