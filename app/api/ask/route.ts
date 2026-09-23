@@ -33,6 +33,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (error instanceof z.ZodError) {
       return jsonError("The question request was not valid.", 400);
     }
+    console.error("[AI Error in /api/ask]:", error);
     return jsonError("The assistant could not answer right now.", 502);
   }
 }
