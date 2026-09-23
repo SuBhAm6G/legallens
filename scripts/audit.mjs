@@ -25,11 +25,14 @@ function inspect(full) {
     return;
   }
   const text = readFileSync(full, "utf8");
-  if (rel.endsWith(".ts") || rel.endsWith(".tsx")) {
+    if (rel.endsWith(".ts") || rel.endsWith(".tsx")) {
     const lines = text.split("\n");
     lines.forEach((line, index) => {
       if (/:\s*any\b|<any>|as any/.test(line) && !line.trim().startsWith("//")) {
         failures.push(`${rel}:${index + 1} contains any`);
+      }
+      if (/(TODO|FIXME|HACK)\b/.test(line)) {
+        failures.push(`${rel}:${index + 1} contains technical debt marker (${line.trim()})`);
       }
     });
     if (text.includes("@ts-ignore")) {
@@ -57,6 +60,34 @@ const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
 for (const script of ["lint", "type-check", "test", "audit:repo"]) {
   if (!pkg.scripts?.[script]) {
     failures.push(`Missing npm script: ${script}`);
+  }
+}
+
+try {
+  const nextConfig = readFileSync(join(root, "next.config.ts"), "utf8");
+  if (!nextConfig.includes("Content-Security-Policy")) {
+    failures.push("next.config.ts is missing Content-Security-Policy");
+  }
+} catch {
+  failures.push("Could not read next.config.ts");
+}
+
+try {
+  const auditResult = execSync("npm audit --json", { encoding: "utf8" });
+  const auditJson = JSON.parse(auditResult);
+  if (auditJson.metadata?.vulnerabilities?.total > 0) {
+    console.warn("npm audit found vulnerabilities. Check if any are critical.");
+    // We log a warning instead of a hard fail, because transitive dependency vulns happen often, but we should at least check.
+  }
+} catch (e) {
+  // npm audit returns non-zero exit code if vulnerabilities are found
+  try {
+    const auditJson = JSON.parse(e.stdout);
+    if (auditJson.metadata?.vulnerabilities?.total > 0) {
+      console.warn("npm audit found vulnerabilities. Check if any are critical.");
+    }
+  } catch {
+    console.warn("npm audit failed to execute cleanly.");
   }
 }
 
