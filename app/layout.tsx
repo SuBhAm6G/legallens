@@ -30,9 +30,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable} h-full`}>
       <body className="min-h-full bg-[var(--paper)] font-sans text-stone-900 antialiased">
+        <a 
+          href="#main-content" 
+          className="absolute -top-10 left-0 bg-navy px-4 py-2 text-white transition-all focus:top-0 focus:z-50"
+        >
+          Skip to main content
+        </a>
         <SessionProvider>
           <AppHeader />
-          <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
+          <main id="main-content" className="mx-auto max-w-6xl px-4 py-6">{children}</main>
         </SessionProvider>
       </body>
     </html>
