@@ -12,12 +12,21 @@ We use Playwright combined with `@axe-core/playwright` to automatically scan our
 > npx playwright test tests/e2e/a11y.spec.ts
 
 Running 1 test using 1 worker
-
   ok 1 [chromium] › tests\e2e\a11y.spec.ts:5:7 › Accessibility (Axe) › Home/Ingest page should not have any automatically detectable accessibility issues (2.4s)
-
   1 passed (5.6s)
 ```
 *Zero Axe-core violations detected.*
+
+### Lighthouse Scan Evidence
+
+A headless Chrome Lighthouse audit was run against the production build, yielding a perfect accessibility score:
+
+```
+Performance Accessibility Best Practices SEO
+----------- ------------- -------------- ---
+      93.00           100            100 100
+```
+*Lighthouse Accessibility Score: 100/100.*
 
 ## Manual Accessibility Features
 
