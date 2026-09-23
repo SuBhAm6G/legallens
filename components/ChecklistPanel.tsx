@@ -46,7 +46,7 @@ export function ChecklistPanel() {
 
   return (
     <div className="space-y-4">
-      <section className="rounded-lg border border-stone-300 bg-white p-4">
+      <section className="rounded-lg border border-stone-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
         <h2 className="text-lg font-semibold">Lawyer preparation pack</h2>
         <ol className="mt-3 list-decimal space-y-1 pl-5 text-sm">
           <li>Document summary: {brief.purpose}</li>
@@ -60,7 +60,7 @@ export function ChecklistPanel() {
         </ol>
         <button
           type="button"
-          className="mt-4 rounded-md bg-navy px-3 py-2 text-sm text-white"
+          className="mt-4 rounded-md bg-navy px-3 py-2 text-sm text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-navy/90 hover:shadow-md"
           onClick={() => void generatePack()}
         >
           Generate narrative pack
@@ -88,7 +88,7 @@ export function ChecklistPanel() {
           </div>
         ) : null}
       </section>
-      <section className="rounded-lg border border-stone-300 bg-white p-4">
+      <section className="rounded-lg border border-stone-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
         <h2 className="text-lg font-semibold">Checklist</h2>
         <ul className="mt-3 space-y-2">
           {checklist.map((item) => (

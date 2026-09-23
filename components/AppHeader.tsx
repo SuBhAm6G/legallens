@@ -15,7 +15,7 @@ const LINKS = [
 export function AppHeader() {
   const pathname = usePathname();
   return (
-    <header className="border-b border-stone-300 bg-[var(--paper)]">
+    <header className="sticky top-0 z-40 border-b border-stone-300 bg-[var(--paper)]/80 backdrop-blur-md transition-all">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-lg font-semibold tracking-tight text-stone-900">{APP_NAME}</p>

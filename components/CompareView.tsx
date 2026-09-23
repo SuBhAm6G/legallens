@@ -66,7 +66,7 @@ export function CompareView() {
           </p>
           <button
             type="button"
-            className="rounded-md bg-navy px-3 py-2 text-sm text-white"
+            className="rounded-md bg-navy px-3 py-2 text-sm text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-navy/90 hover:shadow-md"
             onClick={() => void explain()}
           >
             Explain material changes
@@ -80,7 +80,7 @@ export function CompareView() {
             {hunks
               .filter((hunk) => hunk.kind !== "unchanged")
               .map((hunk) => (
-                <li key={hunk.id} className="rounded-lg border border-stone-300 bg-white p-4">
+                <li key={hunk.id} className="rounded-lg border border-stone-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
                   <p className="text-xs font-semibold uppercase tracking-wide text-navy">
                     {hunk.kind}
                   </p>

@@ -52,7 +52,7 @@ export const USER_GOALS = [
   "ask_questions",
 ] as const;
 
-export const GEMINI_MODEL_ID = "gemini-2.5-flash";
+export const GEMINI_MODEL_ID = "gemini-3.8-flash";
 
 export const BANNED_ASSISTANT_PATTERNS: readonly RegExp[] = [
   /\byou will win\b/i,

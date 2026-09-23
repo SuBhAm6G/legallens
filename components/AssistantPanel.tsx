@@ -54,7 +54,7 @@ export function AssistantPanel() {
 
   return (
     <section className="space-y-4">
-      <form onSubmit={onSubmit} className="rounded-lg border border-stone-300 bg-white p-4">
+      <form onSubmit={onSubmit} className="rounded-lg border border-stone-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
         <label htmlFor="question" className="block text-sm font-medium text-stone-800">
           Ask this document
         </label>
@@ -67,13 +67,13 @@ export function AssistantPanel() {
         />
         <button
           type="submit"
-          className="mt-3 rounded-md bg-navy px-4 py-2 text-sm text-white disabled:opacity-60"
+          className="mt-3 rounded-md bg-navy px-4 py-2 text-sm text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-navy/90 hover:shadow-md disabled:pointer-events-none disabled:opacity-60"
           disabled={busy}
         >
           {busy ? "Searching the document…" : "Ask"}
         </button>
       </form>
-      <div aria-live="polite" className="rounded-lg border border-stone-300 bg-white p-4">
+      <div aria-live="polite" className="rounded-lg border border-stone-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md">
         {error ? <p className="mb-2 text-sm text-amber-900">{error}</p> : null}
         {answer ? (
           <div>
