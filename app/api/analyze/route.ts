@@ -5,8 +5,6 @@ import { guardRequest, jsonError, missingKeyResponse, parseJson } from "@/lib/ai
 import { analyzeOverviewWithAi } from "@/lib/ai/tasks";
 import { analyzeRequestSchema } from "@/lib/schemas";
 
-export const runtime = "edge";
-
 export async function POST(request: Request): Promise<NextResponse> {
   const blocked = guardRequest(request);
   if (blocked) {

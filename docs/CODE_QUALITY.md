@@ -46,7 +46,8 @@ Performance Accessibility Best Practices SEO
 ### Efficiency & Performance Optimizations
 
 LegalLens is heavily optimized to guarantee top-tier runtime efficiency:
-- **Vercel Edge Runtime**: Every single API route (`/api/ask`, `/api/analyze`, etc.) is explicitly configured with `export const runtime = "edge";`. This provides **0ms cold starts** on the Vercel Edge Network and eliminates the memory bloat of standard Node.js serverless functions.
+- **Node.js Serverless Runtime**: All API routes use Next.js's default Node.js serverless runtime (the recommended approach as of Next.js 16.3+, which deprecated the Edge Runtime). This maximizes compatibility and enables full use of Node.js APIs.
+- **Streaming-Ready Architecture**: API routes are structured to handle streaming responses natively via the Vercel AI SDK for minimal time-to-first-byte.
 - **React Rendering**: Heavy front-end list components (`ClauseExplorer`, `CompareView`) are aggressively memoized (`React.memo`) to instantly short-circuit unnecessary DOM diffing and re-renders when parsing massive legal documents.
 
 ## Architecture
