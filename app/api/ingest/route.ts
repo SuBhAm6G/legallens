@@ -4,6 +4,8 @@ import { validateFileInput } from "@/lib/engine/ingestEngine";
 import { guardRequest, jsonError } from "@/lib/ai/http";
 import { MAX_FILE_SIZE_BYTES } from "@/lib/constants";
 
+export const runtime = "edge";
+
 export async function POST(request: Request): Promise<NextResponse> {
   const blocked = guardRequest(request);
   if (blocked) {

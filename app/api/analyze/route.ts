@@ -24,7 +24,6 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (error instanceof z.ZodError) {
       return jsonError("The analyze request was not valid.", 400);
     }
-    console.error("[AI Error in /api/analyze]:", error);
     return jsonError("Document overview enrichment is unavailable.", 502);
   }
 }
