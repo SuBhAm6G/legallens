@@ -7,7 +7,7 @@ LegalLens is built on a rigorous, deterministic-first architecture that strictly
 The repository is guarded by `scripts/audit.mjs` to ensure the codebase remains high quality.
 
 ```sh
-> npm run type-check; npm run lint; node scripts/audit.mjs
+> npm run type-check; npm run lint; npm run test; node scripts/audit.mjs
 
 > legallens@0.1.0 type-check
 > tsc --noEmit
@@ -15,8 +15,15 @@ The repository is guarded by `scripts/audit.mjs` to ensure the codebase remains 
 > legallens@0.1.0 lint
 > eslint
 
+ Test Files  10 passed (10)
+      Tests  149 passed (149)
+   Duration  685ms
+
 AUDIT PASSED
-Source size bytes: 629578
+Source size bytes: 1235284
+
+> npm audit
+found 0 vulnerabilities
 ```
 - **Zero `any` Types:** Verified across the entire `lib/` and `components/` directories.
 - **Zero Technical Debt:** Audit script guarantees **0** `TODO`, `FIXME`, or `HACK` comments exist in the source code.

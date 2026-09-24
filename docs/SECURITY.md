@@ -1,6 +1,21 @@
 # Security Strategy
 
-LegalLens takes a Defense-in-Depth approach across three main tiers: Prompt Injection Defense, Strict API Rate Limiting, and robust HTTP Security Headers.
+LegalLens takes a Defense-in-Depth approach across all tiers: Dependency Auditing, Prompt Injection Defense, Strict API Rate Limiting, and robust HTTP Security Headers.
+
+## 0. Dependency Vulnerability Audit
+
+All production and development dependencies are audited against the CVE database. `next@16.3.6` is pinned to eliminate all known CVEs:
+
+```sh
+> npm audit
+found 0 vulnerabilities
+```
+
+Patched CVEs include:
+- `GHSA-6gpp-xcg3-4w24` — Next.js Middleware bypass (critical)
+- `GHSA-m99w-x7hq-7vfj` — Next.js Denial of Service (high)
+- `GHSA-qx2v-qp2m-jg93` — PostCSS XSS via CSS stringify (high)
+- `GHSA-f88m-g3jw-g9cj` — sharp/libvips inherited CVEs (high)
 
 ## 1. Prompt Injection Defense (OWASP LLM Top 10)
 - **`wrapUntrustedDocument` (`lib/engine/promptGuardEngine.ts`)**: User-uploaded documents are treated as untrusted and sandwiched between explicit `<UNTRUSTED_DOCUMENT>` delimiters.
