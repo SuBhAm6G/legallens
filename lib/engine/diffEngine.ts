@@ -1,6 +1,14 @@
 import type { DiffHunk } from "@/lib/types";
 import { stableId } from "@/lib/utils";
 
+/**
+ * Detects structural and semantic differences between two versions of a legal document.
+ * Groups changes into hunks (added, removed, changed, unchanged) based on block headings.
+ * 
+ * @param original - The original text of the document.
+ * @param updated - The updated text of the document.
+ * @returns An array of diff hunks representing the changes.
+ */
 export function diffDocuments(original: string, updated: string): DiffHunk[] {
   const left = splitBlocks(original);
   const right = splitBlocks(updated);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, memo } from "react";
 import { FileUpload } from "@/components/FileUpload";
 import { useSession } from "@/components/SessionProvider";
 import { diffDocuments } from "@/lib/engine/diffEngine";
@@ -95,7 +95,7 @@ export function CompareView() {
   );
 }
 
-function DiffBody({ hunk }: { hunk: DiffHunk }) {
+const DiffBody = memo(function DiffBody({ hunk }: { hunk: DiffHunk }) {
   if (hunk.kind === "added") {
     return <p className="mt-2 whitespace-pre-wrap text-sm">{hunk.newText}</p>;
   }
@@ -114,9 +114,9 @@ function DiffBody({ hunk }: { hunk: DiffHunk }) {
       </div>
     </div>
   );
-}
+});
 
-function Explanation({
+const Explanation = memo(function Explanation({
   hunkId,
   items,
 }: {
@@ -137,7 +137,7 @@ function Explanation({
       </p>
     </div>
   );
-}
+});
 
 function countKinds(hunks: DiffHunk[]) {
   return {

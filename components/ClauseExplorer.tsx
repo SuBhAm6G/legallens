@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { fallbackClauseExplanation } from "@/lib/engine/fallbackExplain";
 import { useSession } from "@/components/SessionProvider";
 import { clauseExplanationSchema } from "@/lib/schemas";
@@ -115,7 +115,7 @@ export function ClauseExplorer({
   );
 }
 
-function Block({
+const Block = memo(function Block({
   kicker,
   title,
   children,
@@ -131,4 +131,4 @@ function Block({
       <p className="mt-1 whitespace-pre-wrap text-sm text-stone-800">{children}</p>
     </section>
   );
-}
+});

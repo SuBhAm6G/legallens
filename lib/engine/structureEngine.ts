@@ -5,6 +5,13 @@ import { stableId } from "@/lib/utils";
 const SECTION_PATTERN =
   /^(Section\s+\d+[A-Z]?\.?|ARTICLE\s+\d+\.?|\d+\.\s+[A-Z][^\n]{0,80})/gim;
 
+/**
+ * Detects top-level sections in a legal document (e.g., "Section 1", "ARTICLE II").
+ * If no sections are found, treats the entire document as a single section.
+ *
+ * @param text - The raw text of the document.
+ * @returns An array of DocumentSection objects.
+ */
 export function detectSections(text: string): DocumentSection[] {
   const matches = [...text.matchAll(SECTION_PATTERN)];
   if (matches.length === 0) {
@@ -25,6 +32,14 @@ export function detectSections(text: string): DocumentSection[] {
   return sections;
 }
 
+/**
+ * Chunks a list of document sections into smaller, target-sized chunks.
+ * Ensures that chunks do not break mid-sentence if possible.
+ *
+ * @param documentId - The unique ID of the document.
+ * @param sections - The array of detected document sections.
+ * @returns An array of DocumentChunk objects ready for processing.
+ */
 export function chunkDocument(
   documentId: string,
   sections: DocumentSection[],
